@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinépolis</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='cinepolis_estilo.css') }}">
+</head>
+<body>
+
+<div class="pantalla">
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-container">
+      {% for category, msg in messages %}
+        <div class="flash {{ category }}">{{ msg }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+
+
+  <div class="panel entradas">
+    <div class="panel-titulo">Entradas</div>
+
+    <form method="POST" action="{{ url_for('cine') }}" id="formCine" novalidate>
+      {{ form.hidden_tag() }}
+
+      <div class="fila">
+        <label>Nombre</label>
+        {{ form.nombre(class="txt") }}
+        {% if form.nombre.errors %}
+          <div class="error">{{ form.nombre.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+      <div class="fila">
+        <label>Cantidad Compradores</label>
+        {{ form.compradores(class="txt corto") }}
+        {% if form.compradores.errors %}
+          <div class="error">{{ form.compradores.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+      <div class="fila">
+        <label>Tarjeta Cinéco</label>
+        <div class="radios">
+          {% for r in form.tarjeta %}
+            <label class="radioItem">{{ r }} {{ r.label.text }}</label>
+          {% endfor %}
+        </div>
+        {% if form.tarjeta.errors %}
+          <div class="error">{{ form.tarjeta.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+      <div class="fila">
+        <label>Cantidad de Boletos</label>
+        {{ form.boletos(class="txt corto") }}
+        {% if form.boletos.errors %}
+          <div class="error">{{ form.boletos.errors[0] }}</div>
+        {% endif %}
+      </div>
+
+    </form>
+  </div>
+
+  <div class="panel salidas">
+    <div class="panel-titulo">Salidas</div>
+
+    <div class="fila2">
+      <label>Valor a Pagar</label>
+      <input class="txt" type="text"
+             value="{% if total != None %}{{ total }}{% else %}0.00{% endif %}"
+             disabled>
+    </div>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+  </div>
+
+  <div class="marca">
+    <div class="marca-texto">
+      <div class="marca-grande">Cinépolis</div>
+      <div class="marca-sub">LA CAPITAL DEL CINE</div>
+    </div>
+  </div>
+
+  <div class="panel acciones mt-5">
+    <div class="panel-titulo">Acciones</div>
+
+    <div class="btns">
+      <button type="submit" form="formCine" class="btn">Procesar</button>
+      <a href="{{ url_for('index') }}" class="btn">Salir</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
