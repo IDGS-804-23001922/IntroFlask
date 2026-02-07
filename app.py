@@ -3,13 +3,6 @@ import math
 import forms
 from flask_wtf.csrf import CSRFProtect
 
-
-app = Flask(__name__)
-app.secret_key = 'clave-super-secreta-123'  # obligatoria
-
-csrf = CSRFProtect(app)
-
-
 app = Flask(__name__)
 app.secret_key = 'clave_secreta'
 csrf = CSRFProtect()
