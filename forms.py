@@ -18,7 +18,7 @@ class userForm(FlaskForm):
 
     correo = EmailField('Correo', [
         validators.DataRequired(message='El campo correo es requerido'),
-        validators.Email(message='Pon un correo válido')  # opcional pero recomendado
+        validators.Email(message='Pon un correo válido')  
     ])
 
 
@@ -29,7 +29,7 @@ class CinepolisForm(FlaskForm):
     ])
 
     compradores = IntegerField('Cantidad Compradores', [
-        validators.DataRequired(message="Pon cantidad de compradores"),
+        validators.DataRequired(message="Camopo requerido"),
         validators.NumberRange(min=1, max=100, message="Compradores inválidos")
     ])
 

@@ -69,7 +69,6 @@ def operas():
 
 @app.route("/OperasBas")
 def OperasBas():
-    # OJO: aquí tenías error porque pusiste operasBas.html sin comillas
     return render_template('operasBas.html')
 
 @app.route("/resultado", methods=['GET','POST'])
@@ -167,10 +166,6 @@ def cine():
         error = "Revisa los datos, algo está mal."
 
     return render_template("cinepolis.html", form=form, total=total, error=error)
-
-
-
-
 
 if __name__ == '__main__':
     csrf.init_app(app)
