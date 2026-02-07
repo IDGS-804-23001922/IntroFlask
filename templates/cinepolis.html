@@ -10,18 +10,15 @@
 
 <div class="pantalla">
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <div class="flash-container">
-      {% for category, msg in messages %}
-        <div class="flash {{ category }}">{{ msg }}</div>
-      {% endfor %}
-    </div>
-  {% endif %}
-{% endwith %}
-
-
-
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for category, msg in messages %}
+          <div class="flash {{ category }}">{{ msg }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
 
   <div class="panel entradas">
     <div class="panel-titulo">Entradas</div>
@@ -77,10 +74,6 @@
              value="{% if total != None %}{{ total }}{% else %}0.00{% endif %}"
              disabled>
     </div>
-
-    {% if error %}
-      <div class="error">{{ error }}</div>
-    {% endif %}
   </div>
 
   <div class="marca">
